@@ -1,0 +1,30 @@
+server:
+  port: 8089
+spring:
+  application:
+    name: eureka-client-fifth-circuit-breaker-service
+  security:
+    user:
+      name: admin 
+      password: admin
+camel:
+  springboot:
+    name: eureka-client-fifth-circuit-breaker-service
+
+logging:
+  config: classpath:logback.xml
+
+eureka:
+  server:
+    port: 9090
+    host: localhost
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.server.host}:${eureka.server.port}/eureka/
+    eureka-server-port: 9090
+  instance:
+    hostname: localhost
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 1
